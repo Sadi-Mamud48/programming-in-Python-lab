@@ -10,7 +10,6 @@ resources = [
 
 # -------- Task 1 --------
 def display_resources(resources):
-    """Display all resources with their details."""
     if not resources:
         print("No resources available.")
         return
@@ -35,7 +34,6 @@ def search_by_category(resources, category):
 
 # -------- Task 3 --------
 def find_unavailable(resources):
-    """Identify resources whose available quantity is zero."""
     zero_qty = [r for r in resources if r[3] == 0]
     if not zero_qty:
         print("All resources are available.")
@@ -47,7 +45,6 @@ def find_unavailable(resources):
 
 # -------- Optional (for testing invalid data) --------
 def add_resource(resources, rid, name, category, qty):
-    """Add a resource but reject negative quantity."""
     if qty < 0:
         print("Error: quantity cannot be negative.")
         return
@@ -65,7 +62,6 @@ if __name__ == "__main__":
     print("\n=== Unavailable Resources ===")
     find_unavailable(resources)
 
-    # ----- Testing & Debugging cases -----
     print("\n=== Testing & Debugging ===")
 
     # 1. Unknown category

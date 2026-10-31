@@ -10,7 +10,6 @@ students = [
 
 # -------- Task 1 --------
 def calculate_average(marks):
-    """Return average of marks. Return None if empty or invalid."""
     if not marks:
         return None
     for m in marks:
@@ -21,7 +20,6 @@ def calculate_average(marks):
 
 # -------- Task 2 --------
 def classify_performance(average):
-    """Return performance category based on average."""
     if average is None:
         return "Invalid Data"
     if average >= 80:
@@ -36,7 +34,6 @@ def classify_performance(average):
 
 # -------- Task 3 --------
 def display_report(students):
-    """Display each student's ID, name, average, and category."""
     if not students:
         print("No student records.")
         return
@@ -76,3 +73,4 @@ if __name__ == "__main__":
     # Empty student list test
     print("\n[Test] Empty student list:")
     display_report([])
+
