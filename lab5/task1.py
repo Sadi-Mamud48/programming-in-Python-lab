@@ -1,81 +1,61 @@
-
 resources = [
-    [101, "Laptop",     "Electronics", 8],
-    [102, "Projector",  "Electronics", 0],
-    [103, "Whiteboard", "Classroom",   5],
-    [104, "Microphone", "Audio",       3],
-    [105, "Camera",     "Electronics", 2],
+    [101, "Laptop", "Electronics", 8],
+    [102, "Projector", "Electronics", 0],
+    [103, "Whiteboard", "Classroom", 5],
+    [104, "Microphone", "Audio", 3],
+    [105, "Camera", "Electronics", 2],
 ]
 
 
-# -------- Task 1 --------
+
+# Task 1: Show all resources
 def display_resources(resources):
     if not resources:
         print("No resources available.")
         return
-
-    print(f"{'ID':<6}{'Name':<15}{'Category':<15}{'Qty':<5}")
-    print("-" * 41)
-    for r in resources:
-        print(f"{r[0]:<6}{r[1]:<15}{r[2]:<15}{r[3]:<5}")
+    for r in resources: 
+        print(r)                              
 
 
-# -------- Task 2 --------
+# Task 2: Search by category
 def search_by_category(resources, category):
-    """Display all resources belonging to a given category."""
     found = [r for r in resources if r[2].lower() == category.lower()]
     if not found:
-        print(f"No resources found in category: {category}")
+        print("No resources found in category:", category)
     else:
-        print(f"Resources in '{category}':")
         for r in found:
-            print(f"  {r[0]} | {r[1]} | Qty={r[3]}")
+            print(r)
 
 
-# -------- Task 3 --------
+# Task 3: Show unavailable resources
 def find_unavailable(resources):
     zero_qty = [r for r in resources if r[3] == 0]
     if not zero_qty:
         print("All resources are available.")
     else:
-        print("Unavailable resources (qty = 0):")
         for r in zero_qty:
-            print(f"  {r[0]} | {r[1]}")
+            print(r)
 
 
-# -------- Optional (for testing invalid data) --------
-def add_resource(resources, rid, name, category, qty):
-    if qty < 0:
-        print("Error: quantity cannot be negative.")
-        return
-    resources.append([rid, name, category, qty])
-
-
-# -------- Main / Testing --------
+# ---- Test ----
 if __name__ == "__main__":
-    print("=== All Resources ===")
     display_resources(resources)
-
-    print("\n=== Search: Electronics ===")
-    search_by_category(resources, "Electronics")
-
-    print("\n=== Unavailable Resources ===")
+    search_by_category(resources, "electronics")
     find_unavailable(resources)
 
-    print("\n=== Testing & Debugging ===")
+    # Testing cases
+    print("Unknown ID test:")
+    unknown_id = 999
+    found = False
+    for r in resources:
+        if r[0] == unknown_id:
+            found = True
+            break
+    print("Found" if found else "Resource ID 999 not found.")
 
-    # 1. Unknown category
-    print("\n[Test] Unknown category 'Furniture':")
-    search_by_category(resources, "Furniture")
+    print("Negative quantity test:")
+    if -2 < 0:
+        print("Error: quantity cannot be negative.")
 
-    # 2. Negative quantity
-    print("\n[Test] Adding resource with negative quantity:")
-    add_resource(resources, 106, "Tablet", "Electronics", -2)
-
-    # 3. Resource with zero units (already present, but show)
-    print("\n[Test] Zero-quantity check again:")
-    find_unavailable(resources)
-
-    # 4. Empty resource list
-    print("\n[Test] Empty resource list:")
+    print("Empty list test:")
     display_resources([])
